@@ -137,6 +137,286 @@ export interface ContextAnalysis {
   suggestions: ContextSuggestion[];
 }
 
+// ─── Taste Profile Types ──────────────────────────────────────────────────────
+
+/**
+ * Represents your personal coding taste — learned from your projects, git history,
+ * and config files. Gets baked into every context file so AI tools code YOUR way.
+ */
+export interface TasteProfile {
+  /** Schema version */
+  version: string;
+  /** When this profile was last updated */
+  lastUpdated: string;
+  /** Projects taste was learned from */
+  sourceProjects: string[];
+  /** Naming conventions */
+  naming: TasteNaming;
+  /** Import style preferences */
+  imports: TasteImports;
+  /** Component architecture preferences */
+  components: TasteComponents;
+  /** Styling approach */
+  styling: TasteStyling;
+  /** TypeScript strictness */
+  typescript: TasteTypeScript;
+  /** Formatting preferences */
+  formatting: TasteFormatting;
+  /** Testing preferences */
+  testing: TasteTesting;
+  /** Personal guardrails (things you tell AI to avoid) */
+  guardrails: string[];
+  /** Libraries and tools you prefer */
+  favoritePatterns: string[];
+  /** Specific patterns learned from your codebase */
+  learnedPatterns: LearnedPattern[];
+  /** Your typical command patterns */
+  commandPreferences: TasteCommands;
+  /** How confident we are in each learned preference */
+  confidence: TasteConfidence;
+}
+
+export interface TasteNaming {
+  files: 'kebab-case' | 'camelCase' | 'snake_case' | 'PascalCase';
+  functions: 'camelCase' | 'snake_case' | 'PascalCase';
+  types: 'PascalCase' | 'camelCase';
+  constants: 'UPPER_CASE' | 'camelCase';
+  components: 'PascalCase' | 'kebab-case';
+}
+
+export interface TasteImports {
+  style: 'named' | 'default' | 'mixed';
+  groupExternal: boolean;
+  absoluteImports: boolean;
+}
+
+export interface TasteComponents {
+  pattern: 'functional' | 'class';
+  colocateTests: boolean;
+  colocateStyles: boolean;
+  propsInterface: boolean;
+}
+
+export interface TasteStyling {
+  approach: 'tailwind' | 'css-modules' | 'styled-components' | 'inline' | 'sass' | 'vanilla-css' | 'unknown';
+}
+
+export interface TasteTypeScript {
+  strict: boolean;
+  avoidAny: boolean;
+}
+
+export interface TasteFormatting {
+  semi: boolean;
+  singleQuote: boolean;
+  trailingComma: boolean;
+  tabWidth: number;
+  bracketSpacing: boolean;
+}
+
+export interface TasteTesting {
+  framework: string;
+  pattern: 'co-located' | 'separate-dir' | 'unknown';
+}
+
+export interface TasteCommands {
+  dev: string;
+  build: string;
+  test: string;
+  lint: string;
+  typecheck: string;
+}
+
+export interface TasteConfidence {
+  naming: number;
+  imports: number;
+  components: number;
+  styling: number;
+  typescript: number;
+  formatting: number;
+  testing: number;
+  overall: number;
+}
+
+export interface LearnedPattern {
+  pattern: string;
+  description: string;
+  confidence: number;
+  evidence: string[];
+}
+
+export interface TasteLearnOptions {
+  /** Whether to analyze git history for patterns */
+  gitHistory: boolean;
+  /** Whether to read config files (tsconfig, eslint, prettier) */
+  configFiles: boolean;
+  /** Whether to analyze project structure naming */
+  projectStructure: boolean;
+  /** Whether to analyze package.json for preferences */
+  packageAnalysis: boolean;
+}
+
+export const DEFAULT_TASTE_OPTIONS: TasteLearnOptions = {
+  gitHistory: true,
+  configFiles: true,
+  projectStructure: true,
+  packageAnalysis: true,
+};
+
+// ─── Code Analysis Types ─────────────────────────────────────────────────────
+
+/**
+ * Detailed analysis of source code patterns in a project.
+ * This is the deep code analysis that goes beyond config files.
+ */
+export interface CodeAnalysisResult {
+  /** Number of source files analyzed */
+  totalFilesAnalyzed: number;
+  
+  /** Import pattern analysis */
+  imports: ImportAnalysis;
+  
+  /** Function style analysis */
+  functions: FunctionAnalysis;
+  
+  /** TypeScript pattern analysis */
+  typescript: TypeScriptCodeAnalysis;
+  
+  /** Component pattern analysis (React/Vue/Svelte) */
+  components: ComponentCodeAnalysis;
+  
+  /** Error handling pattern analysis */
+  errorHandling: ErrorHandlingAnalysis;
+  
+  /** Testing pattern analysis */
+  testing: TestingCodeAnalysis;
+  
+  /** API pattern analysis */
+  api: ApiAnalysis;
+  
+  /** Code organization analysis */
+  organization: OrganizationAnalysis;
+}
+
+export interface ImportAnalysis {
+  /** Percentage of named vs default imports (0-1, higher = more named) */
+  namedVsDefault: number;
+  /** Whether absolute imports are used (e.g., @/, ~/) */
+  usesAbsoluteImports: boolean;
+  /** Whether type-only imports are used (import type { ... }) */
+  usesTypeImports: boolean;
+  /** Average number of import statements per file */
+  avgImportsPerFile: number;
+  /** Whether imports appear grouped (external before internal) */
+  hasGroupedImports: boolean;
+}
+
+export interface FunctionAnalysis {
+  /** Percentage of arrow functions vs declarations (0-1, higher = more arrows) */
+  arrowVsDeclaration: number;
+  /** Percentage of async functions */
+  asyncPercentage: number;
+  /** Whether named functions are preferred over anonymous */
+  prefersNamedFunctions: boolean;
+  /** Whether functions have return type annotations */
+  hasReturnTypes: boolean;
+}
+
+export interface TypeScriptCodeAnalysis {
+  /** Ratio of interfaces to type aliases (0-1, higher = more interfaces) */
+  interfaceVsType: number;
+  /** Percentage of files using `any` type */
+  anyUsage: number;
+  /** Whether generics are commonly used */
+  usesGenerics: boolean;
+  /** Whether `as` casting is used vs `satisfies` */
+  usesAsCasting: boolean;
+  /** Whether optional chaining is preferred */
+  usesOptionalChaining: boolean;
+  /** Whether nullish coalescing is preferred */
+  usesNullishCoalescing: boolean;
+}
+
+export interface ComponentCodeAnalysis {
+  /** Whether functional components are used (vs class components) */
+  usesFunctionalComponents: boolean;
+  /** Whether props have interface/type annotations */
+  hasTypedProps: boolean;
+  /** Whether React hooks are used */
+  usesHooks: boolean;
+  /** Whether styles are co-located with components */
+  colocatedStyles: boolean;
+}
+
+export interface ErrorHandlingAnalysis {
+  /** Whether try-catch is the primary error handling pattern */
+  usesTryCatch: boolean;
+  /** Whether .catch() is used on promises */
+  usesCatchChain: boolean;
+  /** Whether early returns are preferred */
+  usesEarlyReturns: boolean;
+  /** Whether custom error classes are defined */
+  hasCustomErrors: boolean;
+}
+
+export interface TestingCodeAnalysis {
+  /** Whether describe/it blocks are used (vs test()) */
+  usesDescribeIt: boolean;
+  /** Whether expect() assertions are used */
+  usesExpect: boolean;
+  /** Whether mocks/spies are used */
+  usesMocks: boolean;
+  /** Average number of test assertions per test file */
+  assertionsPerTest: number;
+}
+
+export interface ApiAnalysis {
+  /** Whether fetch() is the primary API client */
+  usesFetch: boolean;
+  /** Whether axios/ky/ofetch is used */
+  usesHttpClient: boolean;
+  /** Whether API routes are in `/api/` pattern */
+  usesApiRoutes: boolean;
+  /** Whether React Query/SWR is used for data fetching */
+  usesDataFetching: boolean;
+}
+
+export interface OrganizationAnalysis {
+  /** Whether barrel files (index.ts) are used for exports */
+  usesBarrelFiles: boolean;
+  /** Average file length in lines */
+  avgFileLength: number;
+  /** Whether tests are co-located with source files */
+  coLocatedTests: boolean;
+  /** Whether types are in a dedicated types/ directory */
+  dedicatedTypesDir: boolean;
+}
+
+// ─── Code Suggestion Types ──────────────────────────────────────────────────
+
+/**
+ * An actionable suggestion derived from code analysis.
+ * These help improve code quality, consistency, and maintainability.
+ */
+export interface CodeSuggestion {
+  /** Unique identifier for this suggestion */
+  id: string;
+  /** Category this suggestion belongs to */
+  category: 'imports' | 'functions' | 'typescript' | 'components' | 'error-handling' | 'testing' | 'api' | 'organization' | 'general';
+  /** Severity level */
+  severity: 'high' | 'medium' | 'low';
+  /** Short title */
+  title: string;
+  /** Detailed description */
+  description: string;
+  /** Specific recommendation */
+  recommendation: string;
+  /** Supporting evidence from analysis */
+  evidence: string;
+  /** Icon for display */
+  icon: string;
+}
+
 export type OutputFormat = 'claude-md' | 'cursor-rules' | 'cursor-mdc' | 'aider' | 'custom';
 
 export interface OutputOptions {

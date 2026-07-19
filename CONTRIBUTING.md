@@ -9,7 +9,7 @@ This project adheres to the [Contributor Covenant Code of Conduct](./CODE_OF_CON
 ## How Can I Contribute?
 
 ### 🐛 Reporting Bugs
-- Check [Issues](https://github.com/namangoyal3/contextpilot/issues) first
+- Check [Issues](https://github.com/namangoyal3/opentaste/issues) first
 - Use the bug report template
 - Include: OS, Node version, steps to reproduce
 
@@ -33,8 +33,8 @@ This project adheres to the [Contributor Covenant Code of Conduct](./CODE_OF_CON
 ## Development Setup
 
 ```bash
-git clone https://github.com/namangoyal3/contextpilot.git
-cd contextpilot
+git clone https://github.com/namangoyal3/opentaste.git
+cd opentaste
 pnpm install
 pnpm build
 ```
@@ -47,4 +47,4 @@ pnpm build
 
 ## Questions?
 
-Open a [Discussion](https://github.com/namangoyal3/contextpilot/discussions).
+Open a [Discussion](https://github.com/namangoyal3/opentaste/discussions).

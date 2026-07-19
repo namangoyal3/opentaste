@@ -1,26 +1,26 @@
-# 🚀 Getting Started with ContextPilot
+# 🚀 Getting Started with OpenTaste
 
-## What is ContextPilot?
+## What is OpenTaste?
 
-**ContextPilot** automatically generates and manages AI context files (`CLAUDE.md`, `.cursorrules`, etc.) for your project. It scans your codebase, detects your tech stack, analyzes your architecture, and produces optimized context that makes your AI tools **significantly more effective**.
+**OpenTaste** learns how YOU code — analyzing your source files, configs, and git history — then bakes that taste into context files (`CLAUDE.md`, `.cursorrules`, etc.). Your AI tools start every session knowing exactly how you code.
 
-### Why Context Matters
+### Why Taste Matters
 
-AI coding tools like Claude Code, Cursor, and Cline perform **dramatically better** when they have good context. Without it, they:
-- Hallucinate wrong APIs and packages
-- Use incorrect coding patterns
-- Make architectural mistakes
-- Miss important project conventions
+AI coding tools perform **dramatically better** when they know your personal coding style. Without OpenTaste, every session starts from scratch:
+- Wrong naming conventions
+- Incorrect import styles
+- Missing personal guardrails
+- Generic, unhelpful conventions
 
-ContextPilot solves this by generating **comprehensive, project-specific context** automatically.
+OpenTaste solves this by **learning your personal coding taste** automatically.
 
 ## Quick Start
 
 ### 1. Install
 
 ```bash
-git clone https://github.com/namangoyal3/contextpilot.git
-cd contextpilot
+git clone https://github.com/namangoyal3/opentaste.git
+cd opentaste
 pnpm install && pnpm build
 npm link packages/cli
 ```

@@ -6,6 +6,7 @@ import { registerAnalyzeCommand } from './commands/analyze.js';
 import { registerWatchCommand } from './commands/watch.js';
 import { registerDashboardCommand } from './commands/dashboard.js';
 import { registerDemoCommand } from './commands/demo.js';
+import { registerTasteCommand } from './commands/taste.js';
 
 const program = new Command()
   .name('ctx')
@@ -27,6 +28,7 @@ registerAnalyzeCommand(program);
 registerWatchCommand(program);
 registerDashboardCommand(program);
 registerDemoCommand(program);
+registerTasteCommand(program);
 
 program.parse(process.argv);
 

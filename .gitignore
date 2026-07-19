@@ -8,3 +8,6 @@ coverage/
 .env
 .env.local
 *.tgz
+CLAUDE.md
+.cursorrules
+demo-output/

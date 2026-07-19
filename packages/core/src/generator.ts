@@ -5,6 +5,7 @@ import type {
   ContextSuggestion,
 } from './types.js';
 import { TemplateEngine } from './templates.js';
+import { applyTasteToSection, loadTasteProfile, createDefaultTaste } from './taste.js';
 import { existsSync } from 'fs';
 import { join } from 'path';
 
@@ -294,8 +295,15 @@ function generateReferences(project: DetectedProject): ContextSection {
 
 // ─── Main Generator ─────────────────────────────────────────────────────────
 
-export function generateContext(project: DetectedProject): GeneratedContext {
-  const sections: ContextSection[] = [
+/**
+ * Generate context for a project.
+ * If taste is enabled, personal preferences are baked into the output.
+ */
+export function generateContext(
+  project: DetectedProject,
+  options?: { taste?: boolean }
+): GeneratedContext {
+  let sections: ContextSection[] = [
     generateProjectOverview(project),
     generateTechStack(project),
     generateCommands(project),
@@ -304,6 +312,18 @@ export function generateContext(project: DetectedProject): GeneratedContext {
     generateGuardrails(project),
     generateReferences(project),
   ].filter(Boolean);
+
+  // Apply taste profile if enabled
+  if (options?.taste !== false) {
+    try {
+      const tasteProfile = loadTasteProfile();
+      if (tasteProfile.confidence.overall >= 0.1) {
+        sections = sections.map(s => applyTasteToSection(s, tasteProfile));
+      }
+    } catch {
+      // Taste profile not available — proceed without personalization
+    }
+  }
 
   // Generate CLAUDE.md format
   const claudeMd = generateClaudeMd(sections, project);

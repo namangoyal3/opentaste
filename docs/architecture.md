@@ -1,11 +1,11 @@
-# 🏛️ ContextPilot Architecture
+# 🏛️ OpenTaste Architecture
 
 ## Overview
 
-ContextPilot is organized as a monorepo with three packages:
+OpenTaste is organized as a monorepo with three packages:
 
 ```
-contextpilot/
+opentaste/
 ├── packages/
 │   ├── core/       # 🧠 Detection, analysis, and generation engine
 │   ├── cli/        # ⌨️ Command-line interface
@@ -28,7 +28,7 @@ contextpilot/
                     └──────────────┘
 ```
 
-### Core Package (`@contextpilot/core`)
+### Core Package (`@opentaste/core`)
 
 The detection and generation engine:
 
@@ -61,7 +61,7 @@ Project Directory
 └─────────────┘
 ```
 
-### CLI Package (`@contextpilot/cli`)
+### CLI Package (`@opentaste/cli`)
 
 Commands:
 - `ctx init` — Generate context files

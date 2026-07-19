@@ -1,8 +1,8 @@
 {
-  "name": "contextpilot",
-  "version": "0.1.0",
+  "name": "opentaste",
+  "version": "1.0.0",
   "private": true,
-  "description": "🧠 AI Context Management Platform — Generate, optimize, and sync context for Claude Code, Cursor, Cline, and every AI coding tool",
+  "description": "🧠 OpenTaste — AI learns how you code, so tools code YOUR way. Deep code analysis, personal taste profiles, and smart context generation for Claude Code, Cursor, and every AI coding tool.",
   "keywords": [
     "ai",
     "context",
@@ -13,18 +13,22 @@
     ".cursorrules",
     "developer-tools",
     "llm",
-    "prompt-engineering"
+    "prompt-engineering",
+    "code-analysis",
+    "code-quality",
+    "taste-profile",
+    "personalization"
   ],
   "license": "MIT",
   "author": "Naman Goyal",
   "repository": {
     "type": "git",
-    "url": "https://github.com/namangoyal3/contextpilot.git"
+    "url": "https://github.com/namangoyal3/opentaste.git"
   },
   "bugs": {
-    "url": "https://github.com/namangoyal3/contextpilot/issues"
+    "url": "https://github.com/namangoyal3/opentaste/issues"
   },
-  "homepage": "https://github.com/namangoyal3/contextpilot#readme",
+  "homepage": "https://github.com/namangoyal3/opentaste#readme",
   "workspaces": [
     "packages/*"
   ],

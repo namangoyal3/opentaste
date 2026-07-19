@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 import { logger } from '../utils/logger.js';
-import { scanProject, generateContext, TemplateEngine } from '@contextpilot/core';
+import { scanProject, generateContext, TemplateEngine, loadTasteProfile } from '@contextpilot/core';
 import { writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join, resolve } from 'path';
 import chalk from 'chalk';
@@ -12,8 +12,9 @@ export function registerInitCommand(program: Command): void {
     .description('Generate AI context files for your project')
     .argument('[path]', 'Path to the project', '.')
     .option('-t, --template <id>', 'Template ID to use (e.g., react-spa, nextjs-app)')
-    .option('--no-claude', 'Skip CLAUDE.md generation', false)
-    .option('--no-cursor', 'Skip .cursorrules generation', false)
+    .option('--no-claude', 'Skip CLAUDE.md generation')
+    .option('--no-cursor', 'Skip .cursorrules generation')
+    .option('--no-taste', 'Skip personal taste profile')
     .option('--all', 'Generate for all supported AI tools', false)
     .option('--dry-run', 'Preview without writing files', false)
     .option('--json', 'Output as JSON', false)
@@ -24,6 +25,7 @@ export function registerInitCommand(program: Command): void {
       all: boolean; 
       dryRun: boolean;
       json: boolean;
+      taste: boolean;
     }) => {
       const rootDir = resolve(projectPath);
 
@@ -59,9 +61,19 @@ export function registerInitCommand(program: Command): void {
         if (project.linter) logger.raw(`  Linter:     ${chalk.cyan(project.linter)}`);
       }
 
+      // Load taste profile for personalization
+      if (opts.taste) {
+        try {
+          const taste = loadTasteProfile();
+          if (taste.confidence.overall >= 0.1) {
+            logger.info(`🧠 Taste profile applied (${chalk.bold(Math.round(taste.confidence.overall * 100) + '%')} confidence)`);
+          }
+        } catch { /* taste not available */ }
+      }
+
       // Generate context
       const genSpinner = ora('Generating context...').start();
-      const context = generateContext(project);
+      const context = generateContext(project, { taste: opts.taste });
       genSpinner.succeed('Context generated');
       genSpinner.succeed(`Coverage score: ${chalk.bold(context.coverageScore)}/100`);
 
