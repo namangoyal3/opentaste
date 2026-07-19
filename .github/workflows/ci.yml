@@ -36,7 +36,6 @@ jobs:
 
       - name: Run tests
         run: pnpm test
-        continue-on-error: true
 
   context-self-test:
     name: Self-Test (ContextPilot on itself)
