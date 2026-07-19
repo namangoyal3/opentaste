@@ -5,6 +5,7 @@ import { writeFileSync } from 'fs';
 import { resolve, join } from 'path';
 import chalk from 'chalk';
 import chokidar from 'chokidar';
+import ora from 'ora';
 
 export function registerWatchCommand(program: Command): void {
   program
@@ -37,7 +38,7 @@ export function registerWatchCommand(program: Command): void {
 
       const regenerate = async (reason: string) => {
         logger.info(`Change detected: ${chalk.dim(reason)}`);
-        const spinner = (await import('ora')).default('Regenerating context...');
+        const spinner = ora('Regenerating context...');
         spinner.start();
 
         try {

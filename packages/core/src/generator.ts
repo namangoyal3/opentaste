@@ -5,6 +5,8 @@ import type {
   ContextSuggestion,
 } from './types.js';
 import { TemplateEngine } from './templates.js';
+import { existsSync } from 'fs';
+import { join } from 'path';
 
 // ─── Context Section Generators ─────────────────────────────────────────────
 
@@ -289,9 +291,6 @@ function generateReferences(project: DetectedProject): ContextSection {
     priority: 4,
   };
 }
-
-import { existsSync } from 'fs';
-import { join } from 'path';
 
 // ─── Main Generator ─────────────────────────────────────────────────────────
 

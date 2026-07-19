@@ -2,6 +2,7 @@ import { Command } from 'commander';
 import { logger } from '../utils/logger.js';
 import { analyzeContextFile, detectContextFiles } from '@contextpilot/core';
 import { resolve } from 'path';
+import { existsSync, statSync } from 'fs';
 import chalk from 'chalk';
 import ora from 'ora';
 
@@ -18,7 +19,6 @@ export function registerAnalyzeCommand(program: Command): void {
       logger.section('ContextPilot — Context Analyzer');
 
       // Check if path is a directory or file
-      const { existsSync, statSync } = await import('fs');
       
       let files: Array<{ path: string; type: string }>;
 
