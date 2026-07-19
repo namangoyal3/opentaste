@@ -57,12 +57,9 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm build
 
-      - name: Link CLI
-        run: npm link packages/cli
-
       - name: Run ctx init (self-demonstration)
         run: |
-          ctx init . --dry-run --json > context-report.json
+          node packages/cli/dist/index.js init . --dry-run --json > context-report.json
           cat context-report.json
 
       - name: Upload context report
