@@ -9,6 +9,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![CI](https://github.com/namangoyal3/contextpilot/actions/workflows/ci.yml/badge.svg)](https://github.com/namangoyal3/contextpilot/actions/workflows/ci.yml)
 [![GitHub Stars](https://img.shields.io/github/stars/namangoyal3/contextpilot?style=social)](https://github.com/namangoyal3/contextpilot)
 [![Made for AI Devs](https://img.shields.io/badge/Made%20for-AI%20Developers-blueviolet)](https://github.com/namangoyal3/contextpilot)
 

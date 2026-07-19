@@ -241,10 +241,13 @@ export default function App() {
 
   // Animated background
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const canvasEl = canvasRef.current;
+    if (!canvasEl) return;
+    const context = canvasEl.getContext('2d');
+    if (!context) return;
+
+    const canvas = canvasEl as HTMLCanvasElement;
+    const ctx = context;
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;

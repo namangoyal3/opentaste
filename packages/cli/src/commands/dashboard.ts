@@ -18,7 +18,9 @@ export function registerDashboardCommand(program: Command): void {
 
       // Find the dashboard package
       const dashboardDir = resolve(__dirname, '..', '..', '..', 'dashboard');
-      const { existsSync, statSync } = await import('fs');
+      const { existsSync, statSync, readFileSync } = await import('fs');
+      const { createServer } = await import('http');
+      const { extname } = await import('path');
 
       // Check if dashboard is built
       const distDir = join(dashboardDir, 'dist');
@@ -42,10 +44,6 @@ export function registerDashboardCommand(program: Command): void {
         // Serve the built dashboard
         logger.info(`Starting dashboard on ${chalk.cyan(`http://localhost:${opts.port}`)}`);
 
-        const { createServer } = await import('http');
-        const { readFileSync } = await import('fs');
-        const { extname } = await import('path');
-
         const mimeTypes: Record<string, string> = {
           '.html': 'text/html',
           '.js': 'application/javascript',
@@ -57,7 +55,8 @@ export function registerDashboardCommand(program: Command): void {
         };
 
         const server = createServer((req, res) => {
-          let filePath = join(distDir, req.url === '/' ? 'index.html' || '' : req.url || '');
+          const fileName = req.url === '/' ? 'index.html' : (req.url || '');
+          const filePath = join(distDir, fileName);
           const ext = extname(filePath);
           const contentType = mimeTypes[ext] || 'application/octet-stream';
 

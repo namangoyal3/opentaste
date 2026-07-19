@@ -54,15 +54,15 @@ export function registerAnalyzeCommand(program: Command): void {
           }
 
           // Print analysis results
-          const typeColors: Record<string, chalk.Chalk> = {
-            'claude-code': chalk.magenta,
-            'cursor': chalk.green,
-            'cline': chalk.blue,
-            'aider': chalk.yellow,
-            'custom': chalk.white,
-          };
-
-          const typeColor = typeColors[analysis.toolType] || chalk.white;
+          const typeColor = (() => {
+            switch (analysis.toolType) {
+              case 'claude-code': return chalk.magenta;
+              case 'cursor': return chalk.green;
+              case 'cline': return chalk.blue;
+              case 'aider': return chalk.yellow;
+              default: return chalk.white;
+            }
+          })();
           logger.raw(`  ${chalk.bold(file.path)} (${typeColor(analysis.toolType)})`);
 
           // Score bar
