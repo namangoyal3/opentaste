@@ -11,17 +11,17 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export function registerDemoCommand(program: Command): void {
   program
     .command('demo')
-    .description('Run ContextPilot on itself to demonstrate capabilities')
+    .description('Run OpenTaste on itself to demonstrate capabilities')
     .option('-o, --output <path>', 'Output directory for demo artifacts', 'demo-output')
     .option('--dry-run', 'Show output without writing files', false)
     .action(async (opts: { output: string; dryRun: boolean }) => {
-      logger.section('ContextPilot — Self-Demonstration');
+      logger.section('OpenTaste — Self-Demonstration');
 
-      // Find the contextpilot project root
+      // Find the opentaste project root
       const projectRoot = resolve(__dirname, '..', '..', '..', '..');
       const outputDir = resolve(process.cwd(), opts.output);
 
-      logger.info(`Scanning ContextPilot itself at: ${chalk.bold(projectRoot)}`);
+      logger.info(`Scanning OpenTaste itself at: ${chalk.bold(projectRoot)}`);
       logger.raw('');
 
       // Step 1: Scan
@@ -111,13 +111,13 @@ export function registerDemoCommand(program: Command): void {
       // Summary
       logger.section('Demo Complete');
       logger.raw('');
-      logger.raw(`  ${chalk.bold('ContextPilot')} just analyzed itself and generated:`);
+      logger.raw(`  ${chalk.bold('OpenTaste')} just analyzed itself and generated:`);
       logger.raw(`  ${chalk.green('✓')} ${context.sections.length} context sections`);
       logger.raw(`  ${chalk.green('✓')} ${context.claudeMd.split('\n').length} lines of CLAUDE.md`);
       logger.raw(`  ${chalk.green('✓')} ${context.cursorRules.split('\n').length} lines of .cursorrules`);
       logger.raw(`  ${chalk.green('✓')} Coverage score: ${context.coverageScore}/100`);
       logger.raw(`  ${chalk.green('✓')} ${context.suggestions.length} improvement suggestions`);
       logger.raw('');
-      logger.success(`ContextPilot works! Run ${chalk.cyan('ctx init')} on your own project to get started.`);
+      logger.success(`OpenTaste works! Run ${chalk.cyan('ctx init')} on your own project to get started.`);
     });
 }

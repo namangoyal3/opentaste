@@ -22,7 +22,7 @@ import { DEFAULT_TASTE_OPTIONS } from './types.js';
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
-const TASTE_DIR = join(homedir(), '.config', 'contextpilot');
+const TASTE_DIR = join(homedir(), '.config', 'opentaste');
 const TASTE_FILE = join(TASTE_DIR, 'taste.json');
 
 const CURRENT_VERSION = '1.0.0';

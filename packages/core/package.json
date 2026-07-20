@@ -1,6 +1,6 @@
 {
   "name": "@contextpilot/core",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "AI context detection, analysis and generation engine",
   "type": "module",
   "main": "./dist/index.js",

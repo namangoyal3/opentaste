@@ -18,7 +18,7 @@ export function registerWatchCommand(program: Command): void {
       const rootDir = resolve(projectPath);
       const debounceMs = parseInt(opts.debounce, 10);
 
-      logger.section('ContextPilot — Watch Mode');
+      logger.section('OpenTaste — Watch Mode');
       logger.info(`Watching: ${chalk.bold(rootDir)}`);
       logger.raw(`  ${chalk.dim('Debounce:')} ${debounceMs}ms`);
       logger.raw(`  ${chalk.dim('Press Ctrl+C to stop')}`);

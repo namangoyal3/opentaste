@@ -10,7 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export function registerDashboardCommand(program: Command): void {
   program
     .command("dashboard")
-    .description("Launch the ContextPilot web dashboard")
+    .description("Launch the OpenTaste web dashboard")
     .option("-p, --port <port>", "Port to serve the dashboard", "4040")
     .option("--no-open", "Do not open browser automatically")
     .action(async (opts: { port: string; open: boolean }) => {
@@ -21,7 +21,7 @@ export function registerDashboardCommand(program: Command): void {
         return;
       }
 
-      logger.section("ContextPilot — Dashboard");
+      logger.section("OpenTaste — Dashboard");
 
       // Find the dashboard package
       const dashboardDir = resolve(__dirname, "..", "..", "..", "dashboard");

@@ -1,13 +1,13 @@
 {
   "name": "@contextpilot/cli",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "CLI for managing AI context — generate, analyze, optimize context for Claude Code, Cursor, Cline",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
     "ctx": "./dist/index.js",
-    "contextpilot": "./dist/index.js"
+    "opentaste": "./dist/index.js"
   },
   "files": ["dist"],
   "scripts": {

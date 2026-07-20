@@ -1,4 +1,4 @@
-# 📚 ContextPilot API Reference
+# 📚 OpenTaste API Reference
 
 ## CLI Commands
 

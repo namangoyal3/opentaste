@@ -1,8 +1,8 @@
 {
   "name": "@contextpilot/dashboard",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
-  "description": "Web dashboard for ContextPilot — visualize and manage AI context",
+  "description": "Web dashboard for OpenTaste — visualize and manage AI context",
   "type": "module",
   "scripts": {
     "dev": "vite --port 4040",

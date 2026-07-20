@@ -182,7 +182,7 @@ export function registerTasteCommand(program: Command): void {
           }
 
           logger.success(
-            `Taste profile saved! ${chalk.bold(`~/.config/contextpilot/taste.json`)}`,
+            `Taste profile saved! ${chalk.bold(`~/.config/opentaste/taste.json`)}`,
           );
           logger.raw("");
           logger.info(
@@ -225,7 +225,7 @@ export function registerTasteCommand(program: Command): void {
 
       logger.raw("");
       logger.raw(
-        `   Profile location: ${chalk.dim(join(homedir(), ".config", "contextpilot", "taste.json"))}`,
+        `   Profile location: ${chalk.dim(join(homedir(), ".config", "opentaste", "taste.json"))}`,
       );
     });
 

@@ -1,4 +1,4 @@
-# 🤝 Contributing to ContextPilot
+# 🤝 Contributing to OpenTaste
 
 First off, thank you for considering contributing! 🎉
 

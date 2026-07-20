@@ -47,7 +47,7 @@ export function registerInitCommand(program: Command): void {
           process.exit(1);
         }
 
-        logger.section("ContextPilot — Context Generator");
+        logger.section("OpenTaste — Context Generator");
         logger.info(`Project: ${chalk.bold(rootDir)}`);
 
         // Scan project

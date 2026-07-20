@@ -13,7 +13,7 @@ You should receive a response within 48 hours.
 
 ## Scope
 
-- The ContextPilot CLI and packages
+- The OpenTaste CLI and packages
 - The web dashboard
 
 ## Out of Scope

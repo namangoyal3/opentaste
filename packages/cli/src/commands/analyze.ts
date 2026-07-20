@@ -20,7 +20,7 @@ export function registerAnalyzeCommand(program: Command): void {
         const resolvedPath = resolve(targetPath);
         logger.setQuiet(opts.json);
 
-        logger.section("ContextPilot — Context Analyzer");
+        logger.section("OpenTaste — Context Analyzer");
 
         // Check if path is a directory or file
 

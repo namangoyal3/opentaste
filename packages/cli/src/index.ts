@@ -10,7 +10,7 @@ import { registerTasteCommand } from './commands/taste.js';
 
 const program = new Command()
   .name('ctx')
-  .description('🧠 ContextPilot — AI Context Management Platform')
+  .description('🧠 OpenTaste — AI Context Management Platform')
   .version('0.1.0')
   .usage('<command> [options]')
   .addHelpText('after', `
@@ -20,7 +20,7 @@ Examples:
   $ ctx analyze                       Analyze existing context quality
   $ ctx watch                         Watch files and auto-update context
   $ ctx dashboard                     Launch the web dashboard
-  $ ctx demo                          Run ContextPilot on itself (self-demo)
+  $ ctx demo                          Run OpenTaste on itself (self-demo)
   `);
 
 registerInitCommand(program);
