@@ -1,5 +1,5 @@
 {
-  "name": "@contextpilot/cli",
+  "name": "@opentaste/cli",
   "version": "1.0.0",
   "description": "CLI for managing AI context — generate, analyze, optimize context for Claude Code, Cursor, Cline",
   "type": "module",
@@ -17,7 +17,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@contextpilot/core": "workspace:*",
+    "@opentaste/core": "workspace:*",
     "chalk": "^5.3.0",
     "commander": "^12.0.0",
     "ora": "^8.0.0",

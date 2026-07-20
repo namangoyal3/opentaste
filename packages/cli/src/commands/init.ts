@@ -5,7 +5,7 @@ import {
   generateContext,
   TemplateEngine,
   loadTasteProfile,
-} from "@contextpilot/core";
+} from "@opentaste/core";
 import { writeFileSync, existsSync, mkdirSync } from "fs";
 import { join, resolve } from "path";
 import chalk from "chalk";

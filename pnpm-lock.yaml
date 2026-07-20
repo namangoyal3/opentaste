@@ -20,7 +20,7 @@ importers:
 
   packages/cli:
     dependencies:
-      '@contextpilot/core':
+      '@opentaste/core':
         specifier: workspace:*
         version: link:../core
       chalk:

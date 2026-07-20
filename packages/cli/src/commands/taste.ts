@@ -11,7 +11,7 @@ import {
   formatCodeAnalysis,
   generateCodeSuggestions,
   formatCodeSuggestions,
-} from "@contextpilot/core";
+} from "@opentaste/core";
 import chalk from "chalk";
 import { resolve, join, basename } from "path";
 import { existsSync } from "fs";

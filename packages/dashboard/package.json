@@ -1,5 +1,5 @@
 {
-  "name": "@contextpilot/dashboard",
+  "name": "@opentaste/dashboard",
   "version": "1.0.0",
   "private": true,
   "description": "Web dashboard for OpenTaste — visualize and manage AI context",

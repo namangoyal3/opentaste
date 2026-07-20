@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 import { logger } from '../utils/logger.js';
-import { scanProject, generateContext } from '@contextpilot/core';
+import { scanProject, generateContext } from '@opentaste/core';
 import { writeFileSync } from 'fs';
 import { resolve, join } from 'path';
 import chalk from 'chalk';

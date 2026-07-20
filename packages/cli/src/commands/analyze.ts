@@ -1,6 +1,6 @@
 import { Command } from "commander";
 import { logger } from "../utils/logger.js";
-import { analyzeContextFile, detectContextFiles } from "@contextpilot/core";
+import { analyzeContextFile, detectContextFiles } from "@opentaste/core";
 import { resolve } from "path";
 import { existsSync, statSync } from "fs";
 import chalk from "chalk";
