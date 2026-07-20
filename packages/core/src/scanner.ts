@@ -330,9 +330,62 @@ function parseManifest(rootDir: string): Manifest {
   return manifest;
 }
 
+/**
+ * Collect dependency names from the root package.json AND any nested
+ * package.json files (monorepo workspaces). Reading root-only misses
+ * frameworks and test tooling that live in packages/* of a monorepo.
+ */
+export function collectWorkspaceDeps(
+  rootDir: string,
+  maxDepth = 3,
+): Record<string, string> {
+  const deps: Record<string, string> = {};
+
+  function walk(dir: string, depth: number): void {
+    if (depth > maxDepth) return;
+    let entries: string[];
+    try {
+      entries = readdirSync(dir);
+    } catch {
+      return;
+    }
+    for (const entry of entries) {
+      if (IGNORED_DIRS.has(entry)) continue;
+      const full = join(dir, entry);
+      let stat;
+      try {
+        stat = statSync(full);
+      } catch {
+        continue;
+      }
+      if (stat.isDirectory()) {
+        walk(full, depth + 1);
+      } else if (entry === "package.json") {
+        try {
+          const pkg = JSON.parse(readFileSync(full, "utf-8"));
+          Object.assign(
+            deps,
+            pkg.dependencies || {},
+            pkg.devDependencies || {},
+          );
+        } catch {
+          /* ignore malformed package.json */
+        }
+      }
+    }
+  }
+
+  walk(rootDir, 0);
+  return deps;
+}
+
 function detectFrameworks(rootDir: string, manifest: Manifest): Framework[] {
   const frameworks: Framework[] = [];
-  const allDeps = { ...manifest.dependencies, ...manifest.devDependencies };
+  const allDeps = {
+    ...manifest.dependencies,
+    ...manifest.devDependencies,
+    ...collectWorkspaceDeps(rootDir),
+  };
 
   for (const detector of FRAMEWORK_DETECTORS) {
     const hasDeps = detector.deps.every((d) => allDeps[d]);

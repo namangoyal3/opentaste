@@ -1,6 +1,7 @@
 import { readFileSync, readdirSync, existsSync, statSync, mkdirSync, writeFileSync } from 'fs';
 import { execSync } from 'child_process';
 import { join, basename, extname } from 'path';
+import { collectWorkspaceDeps } from './scanner.js';
 import { homedir } from 'os';
 import type {
   TasteProfile,
@@ -200,7 +201,13 @@ function readPackageJson(rootDir: string): Record<string, any> | null {
 }
 
 function analyzePackagePreferences(pkg: Record<string, any>, rootDir: string): Partial<TasteProfile> {
-  const allDeps = { ...(pkg.dependencies || {}), ...(pkg.devDependencies || {}) };
+  // Include nested workspace package.json deps so a monorepo's test/styling
+  // tooling (e.g. vitest, tailwind in packages/*) is detected, not just root.
+  const allDeps = {
+    ...(pkg.dependencies || {}),
+    ...(pkg.devDependencies || {}),
+    ...collectWorkspaceDeps(rootDir),
+  };
   const scripts = pkg.scripts || {};
   const learned: Partial<TasteProfile> = {};
 

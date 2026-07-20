@@ -49,4 +49,28 @@ describe("project detection", () => {
       join(root, ".cursor", "rules", "typescript.mdc"),
     ]);
   });
+
+  it("detects frameworks declared in nested workspace package.json (monorepo)", async () => {
+    const root = mkdtempSync(join(tmpdir(), "opentaste-mono-"));
+    tempDirs.push(root);
+    // Root manifest has NO framework deps — they live in a workspace package.
+    writeFileSync(
+      join(root, "package.json"),
+      JSON.stringify({ name: "monorepo", private: true }),
+    );
+    mkdirSync(join(root, "packages", "web"), { recursive: true });
+    writeFileSync(
+      join(root, "packages", "web", "package.json"),
+      JSON.stringify({
+        name: "web",
+        dependencies: { react: "^18.0.0", "react-dom": "^18.0.0" },
+        devDependencies: { vitest: "^2.0.0" },
+      }),
+    );
+
+    const project = await scanProject(root);
+
+    expect(project.frameworks.some((f) => f.name === "React")).toBe(true);
+    expect(project.frameworks.some((f) => f.name === "Vitest")).toBe(true);
+  });
 });

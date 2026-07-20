@@ -301,9 +301,9 @@ export default function App() {
           </div>
         </div>
         <div className="header-right">
-          <div className="status-badge">
+          <div className="status-badge" title="This dashboard shows sample data. Run `ctx dashboard` locally to scan your own project.">
             <span className="status-dot" />
-            <span>Project Scanned</span>
+            <span>Demo · sample data</span>
           </div>
           <button className="btn btn-primary" onClick={() => {}}>↻ Rescan</button>
         </div>
